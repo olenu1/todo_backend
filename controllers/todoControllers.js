@@ -10,10 +10,10 @@ const {Todo} = require('../models/todo');
 const getAllTodos = (req, res) =>{
     Todo.find()
     .then((response) => {
-        res.send(response);
+        res.status(200).send(response);
     })
     .catch((err) => {
-        res.send('an error occured');
+        res.status(500).send('an error occured');
     });
     // res.send('Get all todos');
 };
@@ -21,17 +21,17 @@ const getAllTodos = (req, res) =>{
 const getTodoById = (req,res) =>{
     const id = req.params.id
     Todo.findById(id).then(response =>{
-        res.send(response);
+        res.status(200).send(response);
     }).catch(err =>{
-        res.send('an error occured');
+        res.status(500).send('an error occured');
     });
 }
 
 const createTodo = (req, res) =>{
      const todo = new Todo(req.body);
      todo.save().then(response => {
-         res.send(response)
+         res.status(201).send(response)
      }).catch(err => {
-         res.send('an error occured');
+         res.status(500).send('an error occured');
      })
 }
